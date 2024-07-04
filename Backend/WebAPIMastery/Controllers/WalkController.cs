@@ -47,11 +47,12 @@ namespace WebAPIMastery.Controllers
         }
 
         [HttpGet("DisplayWalkByName")]
-        public async Task<IActionResult>ShowDisplayWalkName(string? filterOn, string? filterQuery, string? sortBy, bool isAscending)
+        public async Task<IActionResult>ShowDisplayWalkName(string? filterOn, string? filterQuery, string? sortBy, bool isAscending,
+            int pageNumber, int pageSize)
         {
             try
             {
-                var walk = await walkRepository.DisplayWalkByName(filterOn, filterQuery, sortBy, isAscending);
+                var walk = await walkRepository.DisplayWalkByName(filterOn, filterQuery, sortBy, isAscending, pageNumber, pageSize);
                 return Ok(walk);    
             }
 
@@ -60,6 +61,21 @@ namespace WebAPIMastery.Controllers
                 return BadRequest(ex.Message);
             }
 
+        }
+
+        [HttpGet("ShowAllWalk")]
+        public async Task<IActionResult> ShowAllWalk()
+        {
+            try
+            {
+                var walks = await walkRepository.DisplayAllWalkAsync();
+                return Ok(walks);
+            }
+
+            catch(Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
     }
 }

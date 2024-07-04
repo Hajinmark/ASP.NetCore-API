@@ -55,13 +55,20 @@ namespace WebAPIMastery.Repositories
             return null;
         }
 
+        public async Task<List<Walk>> DisplayAllWalkAsync()
+        {
+            var walks = await dbContext.Walks.ToListAsync();
+            return walks;
+        }
+
         public async Task<List<Walk>> DisplayWalk()
         {
             var displayWalk = await dbContext.Walks.Include("Difficulty").Include("Region").ToListAsync();
             return displayWalk;
         }
 
-        public async Task<List<Walk>> DisplayWalkByName(string? filterOn = null, string? filterQuery = null, string? sortBy = null, bool isAscending = true)
+        public async Task<List<Walk>> DisplayWalkByName(string? filterOn = null, string? filterQuery = null, 
+            string? sortBy = null, bool isAscending = true, int pageNumber = 1, int pageSize = 1000)
         {
             var walk = dbContext.Walks.Include("Difficulty").Include("Region").AsQueryable();
 
@@ -89,8 +96,13 @@ namespace WebAPIMastery.Repositories
                 }
             }
 
+            //Pagination
+            var skipResults = (pageNumber - 1) * pageSize;
+
+            //var displayWalk = await walk.Skip(skipResults).Take(pageSize).ToListAsync();
             var displayWalk = await walk.ToListAsync();
             return displayWalk;
+            //return displayWalk;
         }
     }
 }

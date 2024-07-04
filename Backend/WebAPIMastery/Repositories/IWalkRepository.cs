@@ -7,6 +7,7 @@ namespace WebAPIMastery.Repositories
         //Task<List<Walk>> GetAllWalks();
         Task<Walk> CreateWalks(Walk walk);
         Task<List<Walk>> DisplayWalk();
-        Task<List<Walk>> DisplayWalkByName(string? filterOn = null, string? filterQuery = null, string? sortBy = null, bool isAscending = true);
+        Task<List<Walk>> DisplayAllWalkAsync();
+        Task<List<Walk>> DisplayWalkByName(string? filterOn = null, string? filterQuery = null, string? sortBy = null, bool isAscending = true, int pageNumber = 1, int pageSize = 1000);
     }
 }
