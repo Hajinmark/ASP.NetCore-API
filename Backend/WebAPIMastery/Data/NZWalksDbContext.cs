@@ -18,6 +18,7 @@ namespace WebAPIMastery.Data
         public DbSet<Walk> Walks { get; set; }
         public DbSet<Person> Persons { get; set; }
         public DbSet<Detail> Details { get; set; }
+        public DbSet<Image> Images { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

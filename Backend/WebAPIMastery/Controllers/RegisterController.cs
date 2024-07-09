@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using WebAPIMastery.Models.Domain;
+using WebAPIMastery.Models.Response;
 using WebAPIMastery.Repositories;
 
 namespace WebAPIMastery.Controllers
@@ -62,7 +63,13 @@ namespace WebAPIMastery.Controllers
                     if(role != null)
                     {
                         var jwtToken = tokenRepository.CreateJWTToken(user, role.ToList());
-                        return Ok(jwtToken);
+
+                        var reponse = new LoginResponse
+                        {
+                            JwtToken = jwtToken
+                        };
+
+                        return Ok(reponse);
                     }
                    
                 }

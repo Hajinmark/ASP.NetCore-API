@@ -1,0 +1,40 @@
+[2024-07-09 21:15:41.725 +08:00  INF]  User profile is available. Using 'C:\Users\lares User\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2024-07-09 21:15:42.098 +08:00  INF]  Now listening on: https://localhost:7003
+[2024-07-09 21:15:42.098 +08:00  INF]  Now listening on: http://localhost:5164
+[2024-07-09 21:15:42.102 +08:00  INF]  Application started. Press Ctrl+C to shut down.
+[2024-07-09 21:15:42.102 +08:00  INF]  Hosting environment: Development
+[2024-07-09 21:15:42.102 +08:00  INF]  Content root path: C:\Users\lares User\Desktop\Programming\Web Development\Backend\WebAPIMastery\
+[2024-07-09 21:15:42.590 +08:00  INF]  Request starting HTTP/2 GET https://localhost:7003/swagger/index.html - -
+[2024-07-09 21:15:42.994 +08:00  INF]  Request finished HTTP/2 GET https://localhost:7003/swagger/index.html - - - 200 - text/html;charset=utf-8 406.2337ms
+[2024-07-09 21:15:43.005 +08:00  INF]  Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - -
+[2024-07-09 21:15:43.015 +08:00  INF]  Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - - - 200 11996 application/javascript;+charset=utf-8 10.3168ms
+[2024-07-09 21:15:43.017 +08:00  INF]  Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - -
+[2024-07-09 21:15:43.090 +08:00  INF]  Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 73.5221ms
+[2024-07-09 21:15:43.130 +08:00  INF]  Request starting HTTP/2 GET https://localhost:7003/swagger/v1/swagger.json - -
+[2024-07-09 21:15:43.302 +08:00  INF]  Request finished HTTP/2 GET https://localhost:7003/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 171.7401ms
+[2024-07-09 21:15:46.714 +08:00  INF]  Request starting HTTP/2 GET https://localhost:7003/api/Regions/GetRegions - -
+[2024-07-09 21:15:46.810 +08:00  INF]  Executing endpoint 'WebAPIMastery.Controllers.RegionsController.GetRegions (WebAPIMastery)'
+[2024-07-09 21:15:46.821 +08:00  INF]  Route matched with {action = "GetRegions", controller = "Regions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetRegions() on controller WebAPIMastery.Controllers.RegionsController (WebAPIMastery).
+[2024-07-09 21:15:47.027 +08:00  ERR]  This is a custom exception
+[2024-07-09 21:15:47.054 +08:00  INF]  Executed action WebAPIMastery.Controllers.RegionsController.GetRegions (WebAPIMastery) in 228.1813ms
+[2024-07-09 21:15:47.059 +08:00  INF]  Executed endpoint 'WebAPIMastery.Controllers.RegionsController.GetRegions (WebAPIMastery)'
+[2024-07-09 21:15:47.062 +08:00  ERR]  An unhandled exception has occurred while executing the request.
+System.Exception: This is a custom exception
+   at WebAPIMastery.Controllers.RegionsController.GetRegions() in C:\Users\lares User\Desktop\Programming\Web Development\Backend\WebAPIMastery\Controllers\RegionsController.cs:line 60
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+[2024-07-09 21:15:47.101 +08:00  INF]  Request finished HTTP/2 GET https://localhost:7003/api/Regions/GetRegions - - - 500 - text/plain;+charset=utf-8 387.2215ms

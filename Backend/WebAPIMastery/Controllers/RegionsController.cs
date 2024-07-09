@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
 using WebAPIMastery.Data;
 using WebAPIMastery.Models.Domain;
 using WebAPIMastery.Repositories;
@@ -10,19 +11,22 @@ namespace WebAPIMastery.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class RegionsController : ControllerBase
     {
         private readonly NZWalksDbContext dbContext;
         private readonly IRegionRepository regionRepository;
-
-        public RegionsController(NZWalksDbContext dbContext, IRegionRepository regionRepository)
+        private readonly ILogger<RegionsController> logger;
+        public RegionsController(NZWalksDbContext dbContext, IRegionRepository regionRepository, 
+            ILogger<RegionsController> logger)
         {
             this.dbContext = dbContext;
             this.regionRepository = regionRepository;
+            this.logger = logger;
         }
 
         [HttpGet]
+        //[Authorize(Roles ="Writer")]
         public IActionResult GetAllRegions()
         {
             var regions = new List<Region>()
@@ -49,16 +53,29 @@ namespace WebAPIMastery.Controllers
         }
 
         [HttpGet("GetRegions")]
-        public async Task<IActionResult> GetRegions() 
+        public async Task<IActionResult> GetRegions()
         {
-            /*var regions = await dbContext.Regions.ToListAsync();
-            return Ok(regions);*/
+            try
+            {
+                throw new Exception("This is a custom exception");
 
-            var regions = await regionRepository.GetAllRegions();
-            return Ok(regions);
+                var regions = await regionRepository.GetAllRegions();
+                return Ok(regions);
+            }
+
+            catch(Exception ex)
+            {
+                logger.LogError($"{ex.Message}");
+                throw;
+                //logger.LogError($"{ex.Message} An error Occured");
+                return BadRequest(ex.Message);
+
+               
+            }
         }
 
         [HttpGet("GetRegionByCode")]
+        //[Authorize(Roles ="Reader")]
         public IActionResult GetRegionByCode(string code)
         {
             var region = dbContext.Regions.Where(x => x.Code == code).FirstOrDefault();
@@ -73,6 +90,7 @@ namespace WebAPIMastery.Controllers
         }
 
         [HttpGet("GetRegionById")]
+        //[Authorize(Roles = "Reader,Writer")]
         public IActionResult GetRegionById(Guid Id)
         {
             var regionId = dbContext.Regions.Find(Id);
